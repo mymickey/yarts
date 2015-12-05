@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--List View Ctrl-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="YLazyListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hb-vi-Sy0" customClass="YLazyListView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="actionDelegate" destination="ZKQ-y5-Dfs" id="7Rj-Ur-Tzm"/>
+                                    <outlet property="delegate" destination="ZKQ-y5-Dfs" id="OkY-g4-47G"/>
+                                    <outlet property="lazyDelegate" destination="qyy-Qt-W2R" id="jT1-9K-F6I"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="1hb-vi-Sy0" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="06A-BC-npN"/>
+                            <constraint firstItem="1hb-vi-Sy0" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="tIY-L9-ub2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="1hb-vi-Sy0" id="tzi-MM-9g2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="2JR-kF-Ebf" customClass="YLazyItemCountManager">
+                    <connections>
+                        <outlet property="lazyListView" destination="1hb-vi-Sy0" id="S8W-N9-MFy"/>
+                        <outlet property="owner" destination="BYZ-38-t0r" id="2bj-Jt-wFr"/>
+                    </connections>
+                </customObject>
+                <customObject id="ZKQ-y5-Dfs" userLabel="MultiplexerProxyBehaviour" customClass="MultiplexerProxyBehaviour">
+                    <connections>
+                        <outlet property="owner" destination="BYZ-38-t0r" id="DZ7-Ed-xUY"/>
+                        <outletCollection property="targets" destination="2JR-kF-Ebf" id="swu-Uz-UMS"/>
+                        <outletCollection property="targets" destination="BYZ-38-t0r" id="3kF-NC-1fl"/>
+                        <outletCollection property="targets" destination="ZTH-Me-KD7" id="ZEQ-k0-zbv"/>
+                    </connections>
+                </customObject>
+                <customObject id="qyy-Qt-W2R" customClass="YLazyListViewDataSource">
+                    <connections>
+                        <outlet property="listViewCtrl" destination="BYZ-38-t0r" id="Fqv-g3-DCz"/>
+                    </connections>
+                </customObject>
+                <customObject id="ZTH-Me-KD7" customClass="YLazyListViewLayoutMgr">
+                    <connections>
+                        <outlet property="lazyListView" destination="1hb-vi-Sy0" id="tuP-h6-azy"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="166" y="346"/>
+        </scene>
+        <!--Lazy List Item Controller-->
+        <scene sceneID="uty-xj-KzJ">
+            <objects>
+                <viewController storyboardIdentifier="YLazyListItemController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2kK-aa-Npk" customClass="YLazyListItemController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wbd-i8-lz4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xi2-c0-QSg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mGD-32-I8r" customClass="YLazyListItem">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbR-MM-Nu5">
+                                <rect key="frame" x="139" y="140" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="label" destination="HbR-MM-Nu5" id="Xrs-Z6-TKv"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g3K-be-I9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556" y="354"/>
+        </scene>
+    </scenes>
+</document>

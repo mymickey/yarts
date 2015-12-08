@@ -12,5 +12,6 @@
 
 @interface YLazyListItem : UIView
 @property (weak, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic) NSInteger vLeft;
 -(void)viewDidFucosWithIndex:(NSInteger)index;
 @end

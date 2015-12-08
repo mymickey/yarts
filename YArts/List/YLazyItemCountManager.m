@@ -21,8 +21,9 @@
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
     NSInteger index = self.lazyListView.orderIndex;
-    //NSLog(@"scroll index:%ld",(long)index);
+   // NSLog(@"scroll index:%ld",(long)self.lazyListView.contentOffset.x);
     [self syncView:index];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

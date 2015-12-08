@@ -20,6 +20,9 @@
 @protocol YLazyListViewActionDelegate <NSObject>
 @required
 -(void)viewDidMovedWith:(NSInteger) index view:(YLazyListItem *)item;//视图被移动到新的位置
+@optional
+-(void)rotateLayout;
+-(void)willRotateLayout;
 
 @end
 
@@ -29,12 +32,18 @@
 @property (nonatomic) CGSize itemSize;
 @property (nonatomic) NSInteger focusIndex;
 @property (nonatomic) NSInteger orderIndex;
+@property( nonatomic)BOOL preventScrollEvent;
 @property (nonatomic,strong,readonly)NSMutableArray<YLazyListItem *> *itemViews;
 @property(nonatomic,weak) IBOutlet id<YLazyListViewDelegate>        lazyDelegate;
 @property(nonatomic,weak) IBOutlet id<YLazyListViewActionDelegate>  actionDelegate;
 -(void)syncViewForIndexIfNeed:(NSInteger) index;
 -(void)reload;
 -(void)resize;
+-(void)willReszie;
+-(NSIndexSet *)getCurrentIndexs;
+-(void)addItem:(YLazyListItem *)view forIndex:(NSInteger)index;
+-(void)scrollToItemWithOrderIndex:(NSInteger)orderIndex;
+-(void)syncViewContentSize;
 @end
 
 

@@ -24,6 +24,7 @@
 		70078A931C0B2E86007E755B /* NSArray+slice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70078A921C0B2E86007E755B /* NSArray+slice.m */; };
 		70931DAB1C12D80900651BC2 /* YLazyListItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70931DAA1C12D80900651BC2 /* YLazyListItemController.m */; };
 		70931DAE1C12E75300651BC2 /* YLazyListViewLayoutMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 70931DAD1C12E75300651BC2 /* YLazyListViewLayoutMgr.m */; };
+		70A966D01C1520AD00D34B39 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70A966CF1C1520AD00D34B39 /* Reveal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		70931DAA1C12D80900651BC2 /* YLazyListItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLazyListItemController.m; sourceTree = "<group>"; };
 		70931DAC1C12E75300651BC2 /* YLazyListViewLayoutMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLazyListViewLayoutMgr.h; sourceTree = "<group>"; };
 		70931DAD1C12E75300651BC2 /* YLazyListViewLayoutMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLazyListViewLayoutMgr.m; sourceTree = "<group>"; };
+		70A966CF1C1520AD00D34B39 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B0D03FFDD9DCD40B983AD8B8 /* libPods-YArts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YArts.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51D7D81F14CDC2B8E0AAF249 /* libPods-YArts.a in Frameworks */,
+				70A966D01C1520AD00D34B39 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +107,7 @@
 		70078A5D1C094DB7007E755B /* YArts */ = {
 			isa = PBXGroup;
 			children = (
+				70A966CF1C1520AD00D34B39 /* Reveal.framework */,
 				70078A8D1C0AC5EC007E755B /* categorys */,
 				70078A891C09E4DE007E755B /* ListItem */,
 				70078A791C0967F0007E755B /* BehaviouLib */,
@@ -416,8 +420,55 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YArts",
+				);
 				INFOPLIST_FILE = YArts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-YArts-AFNetworking\"",
+					"-l\"Pods-YArts-FMDB\"",
+					"-l\"Pods-YArts-FontAwesomeKit\"",
+					"-l\"Pods-YArts-MBProgressHUD\"",
+					"-l\"Pods-YArts-Masonry\"",
+					"-l\"Pods-YArts-YYKit\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"WebP\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = test.com.yzh.YArts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -431,8 +482,55 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YArts",
+				);
 				INFOPLIST_FILE = YArts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-YArts-AFNetworking\"",
+					"-l\"Pods-YArts-FMDB\"",
+					"-l\"Pods-YArts-FontAwesomeKit\"",
+					"-l\"Pods-YArts-MBProgressHUD\"",
+					"-l\"Pods-YArts-Masonry\"",
+					"-l\"Pods-YArts-YYKit\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"WebP\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = test.com.yzh.YArts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

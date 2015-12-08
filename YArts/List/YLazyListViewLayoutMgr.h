@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YLazyListView.h"
-@interface YLazyListViewLayoutMgr : NSObject<YLazyListViewActionDelegate>
+@interface YLazyListViewLayoutMgr : NSObject<YLazyListViewActionDelegate,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet YLazyListView *lazyListView;
 
 @end

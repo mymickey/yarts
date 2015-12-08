@@ -10,6 +10,7 @@
 #import "YLazyListView.h"
 @interface YLazyListViewController ()
 {
+    CGFloat rotateBeforeX;
 }
 @end
 
@@ -27,15 +28,48 @@
     self.scrollView.itemSize = CGSizeZero;
 
     // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapGesture.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:tapGesture];
 }
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
-    NSLog(@"willRotateToInterfaceOrientation    l");
+
+
+-(void)handleTapGesture:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        [self.scrollView scrollToItemWithOrderIndex:0];
+    }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+        self.scrollView.contentOffset = CGPointMake(rotateBeforeX, 0);
+    
+}
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    rotateBeforeX = self.scrollView.contentOffset.x;
+    [self willReszie];
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self didReszie];
+}
+-(void)willReszie
+{
+    self.scrollView.preventScrollEvent = YES;
+    [self.scrollView willReszie ];
+}
+-(void)didReszie
+{
     [self.scrollView resize ];
+    self.scrollView.preventScrollEvent = NO;
 }
 -(BOOL)shouldAutorotate
 {
     return YES;
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.scrollView reload];
@@ -46,10 +80,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //NSLog(@"scrollViewDidScroll by ctrl");
-}
+
 /*
 #pragma mark - Navigation
 

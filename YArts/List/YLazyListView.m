@@ -14,12 +14,34 @@
     NSIndexSet *currentIndexs;
     CGFloat beforeX;
     NSInteger beforeIndex;
+    BOOL isForceRender;
+    UIView *firstView;
 }
 @end
 @implementation YLazyListView
 @synthesize itemViews = _itemViews;
 @synthesize itemSize = _itemSize;
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    [self setFirstView];
+    return self;
+}
+-(void)setFirstView
+{
+    for (NSInteger i=0; [self.subviews count] > i; i++) {
+        if ([self.subviews objectAtIndex:i].tag == 1109) {
+            firstView = [self.subviews objectAtIndex:i];
+        }
+    }
+    
+}
+-(void)syncViewContentSize
+{
+    CGSize itemSize = self.itemSize;
+    self.contentSize = CGSizeMake(self.itemTotal * itemSize.width, itemSize.height);
+}
 -(CGSize)itemSize
 {
     CGSize size = [UIScreen mainScreen].bounds.size;
@@ -73,7 +95,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.contentSize = CGSizeMake(self.itemTotal * self.itemSize.width, self.itemSize.height);
+    [self syncViewContentSize];
 }
 -(void)syncViewForIndex:(NSInteger) index
 {
@@ -117,25 +139,51 @@
 
 -(void)reload
 {
+    //[self syncViewContentSize];
     [self.delegate scrollViewDidScroll:self];
+}
+-(void)willReszie
+{
+    [self.actionDelegate willRotateLayout];
 }
 -(void)resize
 {
+    NSLog(@"resize");
     if ([self.itemViews count]) {
-        for (NSInteger i= 0; [self.itemViews count] > i; i++) {
-            YLazyListItem *view = [self.itemViews objectAtIndex:i];
-            NSInteger index = i;
-            if ([self.actionDelegate respondsToSelector:@selector(viewDidMovedWith:view:)]) {
-                [self.actionDelegate viewDidMovedWith:index view:view];
-            }
-        }
+        [self.actionDelegate rotateLayout];
+        
+        
+//        isForceRender = YES;
+//        [self syncViewForIndexIfNeed:self.orderIndex];
+//        return;
+//        for (NSInteger i= 0; [self.itemViews count] > i; i++) {
+//            YLazyListItem *view = [self.itemViews objectAtIndex:i];
+//            NSInteger index = i;
+//            if ([self.actionDelegate respondsToSelector:@selector(viewDidMovedWith:view:)]) {
+//                [self.actionDelegate viewDidMovedWith:index view:view];
+//            }
+//        }
+    }
+}
+-(NSIndexSet *)getCurrentIndexs
+{
+    return currentIndexs;
+}
+-(void)scrollToItemWithOrderIndex:(NSInteger)orderIndex
+{
+    NSLog(@"scrollToItemWithOrderIndex:%ld",(long)orderIndex);
+    if (orderIndex >=0) {
+        CGPoint point = self.contentOffset;
+        CGPoint newPoint = CGPointMake(self.itemSize.width * orderIndex, point.y);
+        self.contentOffset = newPoint;
     }
 }
 -(void)addItem:(YLazyListItem *)view forIndex:(NSInteger)index
 {
     view.tag = index;
-    if (view.superview != self) {
-        [self addSubview:view];
+    if (view.superview != firstView) {
+        NSLog(@"addItem");
+        [firstView addSubview:view];
         [self.itemViews addObject:view];
     }
     if ([self.actionDelegate respondsToSelector:@selector(viewDidMovedWith:view:)]) {
@@ -156,9 +204,16 @@
 }
 -(void)syncViewForIndexIfNeed:(NSInteger)index
 {
+    if (self.preventScrollEvent) {
+        return;
+    }
      NSIndexSet *newIndexs = [self generateRenderIndexs:index];
     if (index < self.itemTotal - 1 && [newIndexs lastIndex] <= self.itemTotal - 1) {
         [self syncViewForIndex:index];
+    }
+    else{
+        index--;
+        [self syncViewForIndexIfNeed:index];
     }
 }
 

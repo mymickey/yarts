@@ -19,7 +19,17 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hb-vi-Sy0" customClass="YLazyListView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <view tag="1109" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZo-EA-Ah0">
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="568"/>
+                                        <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="LZo-EA-Ah0" firstAttribute="height" secondItem="1hb-vi-Sy0" secondAttribute="height" id="Mnz-DE-CTG"/>
+                                    <constraint firstItem="LZo-EA-Ah0" firstAttribute="width" secondItem="1hb-vi-Sy0" secondAttribute="width" id="Tb9-gJ-t4X"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="actionDelegate" destination="ZKQ-y5-Dfs" id="7Rj-Ur-Tzm"/>
                                     <outlet property="delegate" destination="ZKQ-y5-Dfs" id="OkY-g4-47G"/>
@@ -80,7 +90,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbR-MM-Nu5">
                                 <rect key="frame" x="139" y="140" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

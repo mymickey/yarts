@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //[self addChildViewController:self];
     self.scrollView.lazyItemCount = 3;
     self.scrollView.itemTotal = 10;
     self.scrollView.itemSize = CGSizeZero;

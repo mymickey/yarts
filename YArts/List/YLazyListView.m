@@ -151,18 +151,6 @@
     NSLog(@"resize");
     if ([self.itemViews count]) {
         [self.actionDelegate rotateLayout];
-        
-        
-//        isForceRender = YES;
-//        [self syncViewForIndexIfNeed:self.orderIndex];
-//        return;
-//        for (NSInteger i= 0; [self.itemViews count] > i; i++) {
-//            YLazyListItem *view = [self.itemViews objectAtIndex:i];
-//            NSInteger index = i;
-//            if ([self.actionDelegate respondsToSelector:@selector(viewDidMovedWith:view:)]) {
-//                [self.actionDelegate viewDidMovedWith:index view:view];
-//            }
-//        }
     }
 }
 -(NSIndexSet *)getCurrentIndexs
@@ -182,7 +170,6 @@
 {
     view.tag = index;
     if (view.superview != firstView) {
-        NSLog(@"addItem");
         [firstView addSubview:view];
         [self.itemViews addObject:view];
     }
@@ -217,37 +204,6 @@
     }
 }
 
--(BOOL)isAfter:(NSInteger )index
-{
-    NSArray *arr = [currentIndexs toArray];
-    NSInteger idx = [arr indexOfObject:@(index)];
-    if ([currentIndexs lastIndex] == index) {
-        return YES;
-    }
-    NSArray *after = [arr sliceStart:idx+1  end:[arr count] -1];
-    if ([after containsObject:@(index)]) {
-        return YES;
-    }
-    return NO;
-}
--(BOOL )getPrimes :(NSInteger) n {
-    //http://stackoverflow.com/questions/11966520/how-to-find-prime-numbers-between-0-100 计算素数
-    //if (n < 2) return NO;
-    
-    /**
-     * An integer is prime if it is not divisible by any prime less than or equal to its square root
-     **/
-    
-    double q = floor(sqrt(n));
-    
-    for (NSInteger i = 2; i <= q; i++)
-    {
-        if (n % i == 0)
-        {
-            return NO;
-        }
-    }
-    
-    return YES;
-}
+
+
 @end
